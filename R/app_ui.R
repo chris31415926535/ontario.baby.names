@@ -34,46 +34,13 @@ app_ui <- function(request) {
       fluidRow(
         tabsetPanel(
           tabPanel("Trends",
+                   mod_trends_r6_ui("trends_r6", r)),
 
-                   sidebarLayout(
-                     sidebarPanel(width = 4,#tags$style("max-width: 20px;"),
-
-                                  selectizeInput("time_names",
-                                                 "Baby names:",
-                                                 c("Chris", "David", "Olivier"),
-                                                 multiple = TRUE,
-                                                 selected = NULL
-                                  ),
-                                  radioButtons("time_gender",
-                                               "Genders:",
-                                               choices = c("All", "Male", "Female"),
-                                               selected = "All",
-                                               inline = TRUE)
-
-                     ),
-                     mainPanel(dygraphs::dygraphOutput("time_plot"),
-                               #plotOutput("time_plot"),
-                               textOutput("time_text"))
-                   )
-
-          ),
-
-          tabPanel("Top Names",
-
-                   # plotly::plotlyOutput("top_plot")
-          ),
-
-          tabPanel("By Year",
+          tabPanel("Yearly Stats",
                    sidebarLayout(
                      sidebarPanel(
-                       width = 4,#tags$style("max-width: 20px;"),
-                       #
-                       #                        shiny::numericInput("year_year",
-                       #                                            "Select Year:",
-                       #                                            min = 1917,
-                       #                                            max = 2019,
-                       #                                            value = 2019,
-                       #                                            step = 1),
+                       width = 4,
+
                        shiny::selectInput("year_year",
                                           "Select Year:",
                                           choices = 2019:1917,
@@ -93,6 +60,7 @@ app_ui <- function(request) {
                      mainPanel(plotly::plotlyOutput("year_plot"))
                    )
           ),
+
 
 
           tabPanel("About",

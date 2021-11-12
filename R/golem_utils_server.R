@@ -12,6 +12,21 @@ not_null <- Negate(is.null)
 not_na <- Negate(is.na)
 
 
+# add missing rows for plotting years with 0 frequency
+add_missing_years <- function(df) {
+
+  for (name in unique(df$select_label)){
+  df <- df %>%
+    dplyr::bind_rows(
+                     dplyr::tibble(year = setdiff(1917:2019, df$year),
+                                   select_label = name,
+                                   freq = 0
+                                   ))
+  }
+
+  dplyr::arrange(df, year) %>%
+    return()
+}
 
 
 #' Removes the null from a vector
