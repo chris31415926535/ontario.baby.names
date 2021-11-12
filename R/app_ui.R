@@ -26,6 +26,8 @@ app_ui <- function(request) {
 
                            /* .div {display: inline-block;}*/
                            #subtitle {display: inline-block;}
+
+                           div#main_time_plot.col-sm-8: {padding-left: 0px;}
                            '))),
       fluidRow(
         div(h1("Baby Names: "),
@@ -36,30 +38,8 @@ app_ui <- function(request) {
           tabPanel("Trends",
                    mod_trends_r6_ui("trends_r6", r)),
 
-          tabPanel("Yearly Stats",
-                   sidebarLayout(
-                     sidebarPanel(
-                       width = 4,
-
-                       shiny::selectInput("year_year",
-                                          "Select Year:",
-                                          choices = 2019:1917,
-                                          selected = 2019,
-                                          multiple = FALSE,
-                                          selectize = FALSE),
-
-                       shiny::selectInput("year_num_names",
-                                          "Number of Names:",
-                                          choices = c(5,10,25),
-                                          selected = 10,
-                                          multiple = FALSE,
-                                          selectize = FALSE)
-
-                     ),
-
-                     mainPanel(plotly::plotlyOutput("year_plot"))
-                   )
-          ),
+          tabPanel("Top Names",
+                   mod_top_names_ui("top_names_1", r)),
 
 
 

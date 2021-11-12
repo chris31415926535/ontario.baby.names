@@ -26,10 +26,18 @@ baby_names_forselect <- baby_names %>%
   dplyr::distinct() %>%
   dplyr::arrange(name)
 
+# generate much smaller pre-calculated table for top names
+baby_names_top_all <- baby_names %>%
+  dplyr::select(-select_label) %>%
+  dplyr::group_by(gender, year) %>%
+  dplyr::arrange(dplyr::desc(freq)) %>%
+  dplyr::slice_head(n=25) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(gender = factor(gender, levels = c("male", "female")))
 
 baby_names_forselect <- baby_names_forselect$select_label
 
-
+usethis::use_data(baby_names_top_all, overwrite = TRUE)
 usethis::use_data(baby_names_forselect, overwrite = TRUE)
 usethis::use_data(baby_names, overwrite = TRUE)
 usethis::use_data(top_yearly_names, overwrite = TRUE)

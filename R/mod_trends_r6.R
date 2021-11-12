@@ -29,7 +29,7 @@ mod_trends_r6_ui <- function(id, r){
 
       ),
 
-      mainPanel(dygraphs::dygraphOutput(ns("time_plot")))
+      mainPanel(id = "main_time_plot", dygraphs::dygraphOutput(ns("time_plot")))
 
     )
   )
@@ -50,7 +50,7 @@ mod_trends_r6_server <- function(id, r){
     # update our inpt to use server-side processing
     updateSelectizeInput(session,
                          'time_names',
-                         choices = baby_names_forselect,
+                         choices = ontario.baby.names::baby_names_forselect,
                          selected = NULL,
                          server = TRUE)
 
@@ -60,15 +60,15 @@ mod_trends_r6_server <- function(id, r){
       message("Observed radio button click")
 
       if (input$time_gender == "All"){
-        new_choices <- baby_names_forselect
+        new_choices <- ontario.baby.names::baby_names_forselect
         new_selected <- input$time_names
       }
       if (input$time_gender == "Male") {
-        new_choices <- stringr::str_subset(baby_names_forselect, "\\(male")
+        new_choices <- stringr::str_subset(ontario.baby.names::baby_names_forselect, "\\(male")
         new_selected <- stringr::str_subset(input$time_names, "\\(male")
       }
       if (input$time_gender == "Female") {
-        new_choices <- stringr::str_subset(baby_names_forselect, "female")
+        new_choices <- stringr::str_subset(ontario.baby.names::baby_names_forselect, "female")
         new_selected <- stringr::str_subset(input$time_names, "female")
       }
 

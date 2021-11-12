@@ -14,6 +14,7 @@ not_na <- Negate(is.na)
 
 # add missing rows for plotting years with 0 frequency
 add_missing_years <- function(df) {
+  year <- NULL # for devtools::check()
 
   for (name in unique(df$select_label)){
   df <- df %>%
