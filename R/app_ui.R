@@ -28,6 +28,23 @@ app_ui <- function(request) {
                            #subtitle {display: inline-block;}
 
                            div#main_time_plot.col-sm-8: {padding-left: 0px;}
+
+                           .flagbar{
+                             width: 25px;
+                             height: 3px;
+                            }
+
+                            .blue {
+                             background-color: #5bcffb;
+                            }
+
+                            .pink {
+                             background-color: #f5abb9;
+                            }
+
+                            .white {
+                             background-color: #fff;
+                            }
                            '))),
       fluidRow(
         div(h1("Baby Names: "),
@@ -46,7 +63,15 @@ app_ui <- function(request) {
           tabPanel("About",
 
                    h3("About the Data"),
-                   p(shinipsum::random_text(nwords = 100)),
+                   shiny::span( p(shinipsum::random_text(nwords = 100))),
+
+
+                   div(style = "display:flex; ",
+                       div(flag()),
+                       div(p("This data only includes genders people were assigned at birth. This is the beginning of their stories, not the end.")),
+                       div(flag())
+                   ),
+
 
                    h3("About the Dashboard"),
                    p(shinipsum::random_text(nwords = 100)),
@@ -88,3 +113,37 @@ golem_add_external_resources <- function(){
   )
 }
 
+
+#<style>
+#.flagbar{
+#  width: 25px;
+#  height:4px;
+#}
+#
+#.blue {
+#  background-color: #5bcffb;
+#}
+#
+#.pink {
+#  background-color: #f5abb9;
+#}
+#
+#.white {
+#  background-color: #fff;
+#}
+# </style>
+#
+#<div class = "flagbar blue" ></div>
+#<div class = "flagbar pink" ></div>
+#<div class = "flagbar white" ></div>
+#<div class = "flagbar pink" ></div>
+#<div class = "flagbar blue" ></div>
+flag <- function(){
+  shiny::tagList(
+    shiny::div(class = "flagbar blue"),
+    shiny::div(class = "flagbar pink"),
+    shiny::div(class = "flagbar white"),
+    shiny::div(class = "flagbar pink"),
+    shiny::div(class = "flagbar blue"),
+  )
+}

@@ -144,7 +144,8 @@ r6 <- R6::R6Class("baby_trends",
                                                    values = c("#F0CEFF", "#99EDC3"))
 
                       plotly::ggplotly(forplot) %>%
-                        plotly::config(displayModeBar = F)
+                        plotly::config(displayModeBar = F) %>%
+                        plotly::layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
 
                     }
                   ),

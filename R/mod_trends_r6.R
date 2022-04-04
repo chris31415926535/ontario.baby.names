@@ -105,7 +105,8 @@ mod_trends_r6_server <- function(id, r){
                      gargoyle::trigger("render_timeplot")
                    }
 
-                 })
+                 },
+                 ignoreNULL  = FALSE)
 
 
     # render the plot only as required using gargoyle::trigger / watch
