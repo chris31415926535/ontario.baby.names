@@ -63,7 +63,7 @@ app_ui <- function(request) {
           tabPanel("About",
 
                    h3("About the Data"),
-                   shiny::span( p(shinipsum::random_text(nwords = 100))),
+                   shiny::span( p("Text text text. Text text text. Text text text. Text text text. Text text text. Text text text. Text text text. ")),
 
 
                    div(style = "display:flex; ",
@@ -74,10 +74,10 @@ app_ui <- function(request) {
 
 
                    h3("About the Dashboard"),
-                   p(shinipsum::random_text(nwords = 100)),
+                   p("Text text text. Text text text. Text text text. Text text text. Text text text. Text text text. "),
 
                    h3("About Belanger Analytics"),
-                   p(shinipsum::random_text(nwords = 100)),
+                   p("Text text text. Text text text. Text text text. Text text text. Text text text. Text text text. "),
 
                    p("Testing emojis \U0001f605  \U0001f3f3\u200D\u26A7   \uD83C\uDFF3\u200D\u26A7")
           )
