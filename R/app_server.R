@@ -7,6 +7,14 @@
 app_server <- function( input, output, session ) {
   # Your application server logic
 
+  # https://stackoverflow.com/questions/63739812/why-does-a-shiny-app-get-disconnected-when-not-used-for-a-while
+  #Keep App alive
+  keep_alive <- shiny::reactiveTimer(intervalMs = 10000,
+                                     session = shiny::getDefaultReactiveDomain())
+
+  shiny::observe({keep_alive()})
+
+
   r <- r6$new(ontario.baby.names::baby_names,
               ontario.baby.names::baby_names_forselect,
               ontario.baby.names::baby_names_top_all)
